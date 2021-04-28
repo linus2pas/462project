@@ -17,18 +17,28 @@ LED_CHANNEL    = 0       # set to '1' for GPIOs 13, 19, 41, 45 or 53
 i2c = busio.I2C(board.SCL, board.SDA)
 mpu = adafruit_mpu6050.MPU6050(i2c)
 
+def wheel(pos): # borrowed from rpi_ws281x package test
+    """Generate rainbow colors across 0-255 positions."""
+    if pos < 85:
+        return Color(pos * 3, 255 - pos * 3, 0)
+    elif pos < 170:
+        pos -= 85
+        return Color(255 - pos * 3, 0, pos * 3)
+    else:
+        pos -= 170
+        return Color(0, pos * 3, 255 - pos * 3)
+
 def strand_off(strip):
     for i in range(strip.numPixels()):
         strip.setPixelColor(i, Color(0,0,0))
     strip.show()
 
 def upright(n):
-    
     def show_sand():
         for s in range(0, LED_COUNT):
             #print(s)
             if sand[s] == 1:
-                strip.setPixelColor(s,Color(255,255,255))
+                strip.setPixelColor(s,wheel(s+63))
             elif sand[s] == 0:
                 strip.setPixelColor(s,Color(0,0,0))
         strip.show()
@@ -1326,12 +1336,14 @@ try:
     # Intialize the library (must be called once before other functions).
     strip.begin()
     
-    max_count = 13 + 1 # grains of "sand" + end state
+    max_count = 13 + 1 # grains of "sand" + 1 for end state
     count = max_count - 1
     
-    for i in range(13):
+    count+=1
+    for i in range(14):
         upright(count)
         count -= 1
+    print(count)
     time.sleep(5)
     strand_off(strip)
         
