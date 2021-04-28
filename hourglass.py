@@ -22,13 +22,10 @@ def strand_off(strip):
         strip.setPixelColor(i, Color(0,0,0))
     strip.show()
 
-def countdown(n, is_upright):
+def upright(n):
     
     def show_sand():
-        oriented = range(0, LED_COUNT)
-        if is_upright == False: 
-            oriented = reversed(oriented)
-        for s in oriented:
+        for s in range(0, LED_COUNT):
             #print(s)
             if sand[s] == 1:
                 strip.setPixelColor(s,Color(255,255,255))
@@ -412,7 +409,7 @@ def countdown(n, is_upright):
         time.sleep(0.5)
 
     elif n == 9:
-      sand = [
+        sand = [
             0,0,0,0,0,0,0,0,0,
              0,0,0,0,0,0,0,0,
               0,0,0,0,0,0,0,
@@ -1192,7 +1189,6 @@ def countdown(n, is_upright):
             1,1,1,1,1,1,1,1,1,
             ]
         show_sand()
-        time.sleep(0.5) 
         sand = [
             0,0,0,0,0,0,0,0,0,
              0,0,0,0,0,0,0,0,
@@ -1261,8 +1257,10 @@ try:
     count = max_count - 1
     
     for i in range(13):
-        countdown(count, True)
+        upright(count)
         count -= 1
+    time.sleep(5)
+    strand_off(strip)
         
 except KeyboardInterrupt:
     strand_off(strip)
