@@ -11,12 +11,32 @@ count = max_count
 while True:
     print(count)
     a = mpu.acceleration
-    a_y = a[1] # when standing upright, gravity works in the y direction
-    # gravity accelerates downward at ~9.81 m/s^2
+    a_y = a[1] # upright: gravity in y direction (~9.81m/s^2)
+    a_x = a[0] # horizontal acceleration
     #print(a_y)
-    if (a_y > 9.0 and count < max_count):
+    #print(a_x)
+    if (a_y > 6.0 and count < max_count):
+        if (a_x > 3.0):
+            print("tilt right")
+        elif (a_x < -3.0):
+            print("tilt left")
+        else:
+            print("centered")
         count += 1
-    if (a_y < -9.0 and count > 0):
+    elif (a_y < -6.0 and count > 0):
+        if (a_x > 3.0):
+            print("tilt right")
+        elif (a_x < -3.0):
+            print("tilt left")
+        else:
+            print("centered")
         count -= 1
+    else:
+        if (a_x > 3.0):
+            print("tilt right")
+        elif (a_x < -3.0):
+            print("tilt left")
+        else:
+            print("centered")
     sleep(1)
     
