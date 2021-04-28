@@ -26,7 +26,7 @@ def countdown(n, is_upright):
     
     def show_sand():
         oriented = range(0, LED_COUNT)
-        if is_upright = False 
+        if is_upright == False: 
             oriented = reversed(oriented)
         for s in oriented:
             #print(s)
@@ -37,7 +37,7 @@ def countdown(n, is_upright):
         strip.show()
         time.sleep(0.1)
 
-    if n == 13
+    if n == 13:
         sand = [
             0,0,0,0,0,0,0,0,0,
              0,0,0,0,0,0,0,0,
@@ -409,25 +409,25 @@ def countdown(n, is_upright):
         show_sand()
         time.sleep(0.5)
 
-    elif n == 9
-
-    elif n == 8
-
-    elif n == 7
-
-    elif n == 6
-
-    elif n == 5
-
-    elif n == 4
-
-    elif n == 3
-
-    elif n == 2
-
-    elif n == 1
-
-    elif n == 0
+#     elif n == 9
+# 
+#     elif n == 8
+# 
+#     elif n == 7
+# 
+#     elif n == 6
+# 
+#     elif n == 5
+# 
+#     elif n == 4
+# 
+#     elif n == 3
+# 
+#     elif n == 2
+# 
+#     elif n == 1
+# 
+#     elif n == 0
         
     
 try:
