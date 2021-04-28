@@ -1359,7 +1359,7 @@ try:
         a_y = a[1] # when standing upright, gravity works in the y direction
         # gravity accelerates downward at ~9.81 m/and count > 0s^2
         #print(a_y)
-        print(count)
+        #print(count)
         if (a_y > 7.0 and count < max_count):
             countup(count)
             count += 1

@@ -35,7 +35,7 @@ def strand_off(strip):
 
 def countup(n, tilt=0):
     if tilt == 0:  
-        countdown(14 - n, False)
+        countdown(14-n, 0, False)
     elif tilt == -1:
         countdown(14-n, -1, False)
     # elif tilt == 1:
@@ -2587,18 +2587,26 @@ try:
     count = max_count - 1
     
     count+=1
-    for i in range(14):
-        countdown(count)
-        count -= 1
-    time.sleep(2)
-    for i in range(14):
-        countup(count)
-        count += 1
-    time.sleep(2)
+#     #upright
+#     for i in range(14):
+#         countdown(count)
+#         count -= 1
+#     time.sleep(2)
+#     #upside down
+#     for i in range(14):
+#         countup(count)
+#         count += 1
+#     time.sleep(2)
+    #upright left tilt
     for i in range(14):
         countdown(count, -1)
         count -= 1
     time.sleep(2)
+#     #upside down left tilt
+#     for i in range(14):
+#         countup(count, -1)
+#         count += 1
+#     time.sleep(2)
     strand_off(strip)
 
     # while True:
