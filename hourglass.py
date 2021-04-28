@@ -33,10 +33,10 @@ def strand_off(strip):
         strip.setPixelColor(i, Color(0,0,0))
     strip.show()
 
-def inverted(n):
+def countup(n):
     countdown(14 - n, False)
 
-def countdown(n, isUpright):
+def countdown(n, isUpright=True):
     def show_sand():
         if isUpright == False: sand.reverse()
         for s in range(0, LED_COUNT):
@@ -1343,16 +1343,29 @@ try:
     max_count = 13 + 1 # grains of "sand" + 1 for end state
     count = max_count - 1
     
-    count+=1
-    for i in range(14):
-        countdown(count, True)
-        count -= 1
-    time.sleep(3)
-    for i in range(14):
-        inverted(count)
-        count += 1
-    time.sleep(3)
-    strand_off(strip)
+#     count+=1
+#     for i in range(14):
+#         countdown(count)
+#         count -= 1
+#     time.sleep(3)
+#     for i in range(14):
+#         countup(count)
+#         count += 1
+#     time.sleep(3)
+#     strand_off(strip)
+
+    while True:
+        a = mpu.acceleration
+        a_y = a[1] # when standing upright, gravity works in the y direction
+        # gravity accelerates downward at ~9.81 m/and count > 0s^2
+        #print(a_y)
+        print(count)
+        if (a_y > 7.0 and count < max_count):
+            countup(count)
+            count += 1
+        if (a_y < -7.0 and count > 0):
+            countdown(count)
+            count -= 1
     
 except KeyboardInterrupt:
     strand_off(strip)
