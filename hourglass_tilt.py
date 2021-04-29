@@ -38,8 +38,8 @@ def countup(n, tilt=0):
         countdown(14-n, 0, False)
     elif tilt == -1:
         countdown(14-n, -1, False)
-    # elif tilt == 1:
-        # tiltRight
+    elif tilt == 1:
+        countdown(14-n, 1, False)
         
 def countdown(n, tilt=0, isUpright=True):
     def show_sand():
@@ -2634,7 +2634,7 @@ def countdown(n, tilt=0, isUpright=True):
                 0,0,0,0,1,1,1,1,1,
                  1,1,1,1,0,0,0,0,  # FLIP
                   0,0,0,0,1,1,1,
-                   0,0,0,0,0,1,    # FLIP
+                   1,0,0,0,0,0,    # FLIP
                     0,0,0,0,0,
                      0,0,0,0,      # FLIP
                       0,0,0,
@@ -2813,7 +2813,7 @@ def countdown(n, tilt=0, isUpright=True):
                    0,0,0,0,0,0,
                   0,0,0,0,0,0,0,
                  0,0,0,0,0,0,0,0,
-                1,0,0,0,0,0,0,0,0,
+                0,0,0,0,0,0,0,0,1,
                 ]
             show_sand()
             sand = [
@@ -3385,7 +3385,7 @@ def countdown(n, tilt=0, isUpright=True):
                         1,
                       0,0,0,
                      0,0,0,0,
-                    0,1,0,0,0,
+                    0,0,0,1,0,
                    0,0,0,0,0,0,
                   0,0,0,0,0,0,0,
                  1,1,0,0,0,0,0,0,
@@ -3585,13 +3585,13 @@ def countdown(n, tilt=0, isUpright=True):
                    0,0,0,0,0,0,
                     0,0,0,0,0,
                      0,0,0,0,
-                      1,1,0,
+                      0,1,1,
                         1,
                       0,0,0,
                      0,0,0,0,
                     0,0,0,0,0,
                    0,0,0,0,0,0,
-                  0,1,0,0,0,0,0,
+                  0,0,0,0,0,1,0,
                  1,1,1,1,0,0,0,0,
                 0,0,0,0,1,1,1,1,1,
                 ]
@@ -3850,7 +3850,7 @@ def countdown(n, tilt=0, isUpright=True):
                         0,
                       0,0,0,
                      0,0,0,0,
-                    0,1,0,0,0,
+                    0,0,0,1,0,
                    0,0,0,0,0,0,
                   0,0,0,0,1,1,1,
                  1,1,1,1,0,0,0,0,
@@ -3926,26 +3926,26 @@ try:
     
     #full orientation test
     count+=1
-    # #upright
-    # for i in range(14):
-    #     countdown(count)
-    #     count -= 1
-    # time.sleep(2)
-    # #upside down
-    # for i in range(14):
-    #     countup(count)
-    #     count += 1
-    # time.sleep(2)
-    # #upright left tilt
-    # for i in range(14):
-    #     countdown(count, -1)
-    #     count -= 1
-    # time.sleep(2)
-    # #upside down left tilt
-    # for i in range(14):
-    #     countup(count, -1)
-    #     count += 1
-    # time.sleep(2)
+    #upright
+    for i in range(14):
+     countdown(count)
+     count -= 1
+    time.sleep(2)
+    #upside down
+    for i in range(14):
+     countup(count)
+     count += 1
+    time.sleep(2)
+    #upright left tilt
+    for i in range(14):
+     countdown(count, -1)
+     count -= 1
+    time.sleep(2)
+    #upside down left tilt
+    for i in range(14):
+     countup(count, -1)
+     count += 1
+    time.sleep(2)
     #upright right tilt
     for i in range(14):
         countdown(count, 1)
