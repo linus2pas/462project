@@ -27,6 +27,12 @@ def wheel(pos): # borrowed from rpi_ws281x package test
     else:
         pos -= 170
         return Color(0, pos * 3, 255 - pos * 3)
+    
+def colorWipe(strip, color): # borrowed from rpi_ws281x package test
+    """Wipe color across display a pixel at a time."""
+    for i in range(strip.numPixels()):
+        strip.setPixelColor(i, color)
+        strip.show()
 
 def strand_off(strip):
     for i in range(strip.numPixels()):
@@ -3921,8 +3927,14 @@ try:
     # Intialize the library (must be called once before other functions).
     strip.begin()
     
+    #display startup test
+    colorWipe(strip, Color(255,255,255))
+    time.sleep(1)
+    strand_off(strip)
+    time.sleep(1)
+    
     max_count = 13 + 1 # grains of "sand" + 1 for end state
-    count = max_count - 1
+    count = 13
     
 #     #full orientation test
 #     count+=1
@@ -3964,30 +3976,25 @@ try:
         a_x = a[0] # horizontal acceleration
         #print(a_y)
         #print(a_x)
-        print(count)
-        if (a_y > 6.0 and count < max_count):
+        #print(count)
+        if (a_y > 6.0 and count > 0):
             if (a_x > 3.0): #right tilt
-                countup(count, 1)
-            elif (a_x < -3.0):
-                countup(count, -1)
-            else:
-                countup(count, 0)
-            count += 1
-        elif (a_y < -6.0 and count > 0):
-            if (a_x > 3.0):
                 countdown(count, 1)
             elif (a_x < -3.0):
                 countdown(count, -1)
             else:
                 countdown(count, 0)
             count -= 1
-        else:
+        elif (a_y < -6.0 and count < max_count):
             if (a_x > 3.0):
-                print("tilt right")
+                countup(count, -1)
             elif (a_x < -3.0):
-                print("tilt left")
+                countup(count, 1)
             else:
-                print("centered")
+                countup(count, 0)
+            count += 1
+        else:
+            time.sleep(1)
     
 except KeyboardInterrupt:
     strand_off(strip)
